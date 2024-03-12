@@ -221,7 +221,7 @@ public class AdminDashboardController implements Initializable {
         phonelabel.setText(currentUser.getPhone());
         if (currentUser != null) {
             this.username.setText(currentUser.getName());
-            String imageUrl = "/profilepictures/"+currentUser.getProfilePicture();
+            String imageUrl = "/com/example/ejemplo/profilepictures/"+currentUser.getProfilePicture();
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 try {
                     URL resource = getClass().getResource(imageUrl);
@@ -270,7 +270,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void handleModify() {
         try {
-            AtomicReference<FXMLLoader> loader = new AtomicReference<>(new FXMLLoader(getClass().getResource("/fxml/Modify.fxml")));
+            AtomicReference<FXMLLoader> loader = new AtomicReference<>(new FXMLLoader(getClass().getResource(Constants.MODIFY_FXML)));
             Parent root = loader.get().load();
             System.out.println("Usuario que se intenta modificar: "+currentUser);
             ModifyController modify = loader.get().getController();
@@ -320,7 +320,7 @@ public class AdminDashboardController implements Initializable {
                 for (User user : users) {
                     updateStatistics();
                     try {
-                        loader.set(new FXMLLoader(getClass().getResource("/fxml/ItemAdminList.fxml")));
+                        loader.set(new FXMLLoader(getClass().getResource(Constants.ITEM_ADMIN_LIST_FXML)));
                         Node node = loader.get().load();
                         // Configurar el controlador del nodo
                         ItemAdminListController controller = loader.get().getController();
@@ -357,7 +357,7 @@ public class AdminDashboardController implements Initializable {
         if (file != null) {
             try {
                 // Ruta relativa desde la raíz del proyecto en un entorno de desarrollo
-                String relativePath = "src/main/resources/profilepictures/";
+                String relativePath = "src/main/resources/com/example/ejemplo/profilepictures";
                 String filename = file.getName();
                 File directory = new File(relativePath);
                 if (!directory.exists()) {
